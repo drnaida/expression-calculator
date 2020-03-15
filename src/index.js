@@ -21,6 +21,18 @@ function expressionCalculator(expr) {
          let subResult = Number(leftItem) - Number(rightItem);
          console.log(subResult);
         }
+        if (element === '*') {
+         leftItem = expr.slice(0, index);
+         rightItem = expr.slice(index+1);
+         let proResult = Number(leftItem) * Number(rightItem);
+         console.log(proResult);
+        }
+        if (element === '/') {
+         leftItem = expr.slice(0, index);
+         rightItem = expr.slice(index+1);
+         let divResult = Number(leftItem) / Number(rightItem);
+         console.log(divResult);
+        }
     });
 }
 
