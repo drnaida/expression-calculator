@@ -4,8 +4,18 @@ function eval() {
 }
 
 function expressionCalculator(expr) {
-    // write your solution here
+    let arr = expr.split('');
+    for (let el of arr) {
+        console.log(el);
+        if (el === '+') {
+
+        }
+        if (el === '-') {
+
+        }
+    }
 }
+
 
 module.exports = {
     expressionCalculator
