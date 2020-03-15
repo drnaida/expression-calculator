@@ -5,15 +5,23 @@ function eval() {
 
 function expressionCalculator(expr) {
     let arr = expr.split('');
-    for (let el of arr) {
-        console.log(el);
-        if (el === '+') {
-
+    let leftItem = 0;
+    let rightItem = 0;
+    arr.forEach(function(element, index, array) {
+        console.log(element);
+        if (element === '+') {
+         leftItem = expr.slice(0, index);
+         rightItem = expr.slice(index+1);
+         let sumResult = Number(leftItem) + Number(rightItem);
+         console.log(sumResult);
         }
-        if (el === '-') {
-
+        if (element === '-') {
+         leftItem = expr.slice(0, index);
+         rightItem = expr.slice(index+1);
+         let subResult = Number(leftItem) - Number(rightItem);
+         console.log(subResult);
         }
-    }
+    });
 }
 
 
