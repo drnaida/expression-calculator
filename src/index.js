@@ -4,38 +4,32 @@ function eval() {
 }
 
 function expressionCalculator(expr) {
-    let arr = expr.split('');
-    let leftItem = 0;
-    let rightItem = 0;
-    arr.forEach(function(element, index, array) {
-        console.log(element);
-        if (element === '+') {
-         leftItem = expr.slice(0, index);
-         rightItem = expr.slice(index+1);
-         let sumResult = Number(leftItem) + Number(rightItem);
-         console.log(sumResult);
+    let arr = expr.replace(/\s/g,"").split("");
+    error(arr);
+    function error(arr) {
+      let isPaired = 0;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === "(") {
+          isPaired++;
         }
-        if (element === '-') {
-         leftItem = expr.slice(0, index);
-         rightItem = expr.slice(index+1);
-         let subResult = Number(leftItem) - Number(rightItem);
-         console.log(subResult);
+        if (arr[i] === ")") {
+          isPaired--;
         }
-        if (element === '*') {
-         leftItem = expr.slice(0, index);
-         rightItem = expr.slice(index+1);
-         let proResult = Number(leftItem) * Number(rightItem);
-         console.log(proResult);
+      }
+      if (isPaired !== 0) {
+        throw new Error("ExpressionError: Brackets must be paired.");
+      }
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === "/") {
+          if (arr[i+1] === "0") {
+            throw new Error("TypeError: Division by zero.");
+          }
         }
-        if (element === '/') {
-         leftItem = expr.slice(0, index);
-         rightItem = expr.slice(index+1);
-         let divResult = Number(leftItem) / Number(rightItem);
-         console.log(divResult);
-        }
-    });
+      }
+    }
+    result = new Function("return " + expr.replace(/\s/g,""));
+    return result();
 }
-
 
 module.exports = {
     expressionCalculator
